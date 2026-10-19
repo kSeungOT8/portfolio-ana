@@ -1,0 +1,202 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Portfolio Ana | Dashboard</title>
+  <style>
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      min-height: 100vh;
+      font-family: Arial, sans-serif;
+      background: #101827;
+      color: #f8fafc;
+      display: grid;
+      place-items: center;
+      padding: 24px;
+    }
+    .card {
+      width: 100%;
+      max-width: 430px;
+      background: #1e293b;
+      padding: 30px;
+      border-radius: 18px;
+      box-shadow: 0 20px 60px #0004;
+    }
+    h1 { margin-top: 0; font-size: 27px; }
+    p { color: #cbd5e1; line-height: 1.5; }
+    label { display: block; margin: 18px 0 7px; }
+    input {
+      width: 100%;
+      padding: 13px;
+      border-radius: 9px;
+      border: 1px solid #475569;
+      background: #0f172a;
+      color: white;
+      font-size: 16px;
+    }
+    button {
+      width: 100%;
+      padding: 13px;
+      margin-top: 16px;
+      border: 0;
+      border-radius: 9px;
+      background: #38bdf8;
+      color: #082f49;
+      font-weight: bold;
+      font-size: 16px;
+      cursor: pointer;
+    }
+    button.secondary {
+      background: #334155;
+      color: white;
+    }
+    #message { overflow-wrap: anywhere; }
+    .hidden { display: none; }
+    .tag { color: #7dd3fc; font-size: 13px; }
+  </style>
+</head>
+<body>
+  <main class="card">
+    <section id="auth">
+      <span class="tag">PORTFOLIO ANA</span>
+      <h1 id="heading">Entrar na sua conta</h1>
+      <p>Entre para acessar seu dashboard.</p>
+
+      <form id="authForm">
+        <label for="email">E-mail</label>
+        <input id="email" type="email" autocomplete="email"
+          placeholder="voce@exemplo.com" required>
+
+        <label for="password">Senha</label>
+        <input id="password" type="password"
+          autocomplete="current-password"
+          minlength="6" placeholder="Mínimo de 6 caracteres" required>
+
+        <button id="submitButton" type="submit">Entrar</button>
+      </form>
+
+      <button id="toggleMode" class="secondary" type="button">
+        Criar uma conta
+      </button>
+      <p id="message" role="status"></p>
+    </section>
+
+    <section id="dashboard" class="hidden">
+      <span class="tag">ÁREA RESTRITA</span>
+      <h1>Meu Dashboard</h1>
+      <p>Você entrou com sucesso!</p>
+      <p>Conta conectada: <strong id="userEmail"></strong></p>
+      <p>Este é o início do seu painel. Em seguida, vamos conectar
+        seus dados de usuários, leads e projetos.</p>
+      <button id="logout" type="button">Sair da conta</button>
+    </section>
+  </main>
+
+  <script type="module">
+    import { createClient } from
+      "https://esm.sh/@supabase/supabase-js@2";
+
+    const SUPABASE_URL =
+      "https://ouabxqtwsfugebnzslzv.supabase.co";
+
+    const SUPABASE_PUBLISHABLE_KEY =
+      "sb_publishable_3ugFfMjcp7h06mkJsCwZaA_gZ9WPR8j";
+
+    const supabase = createClient(
+      SUPABASE_URL,
+      SUPABASE_PUBLISHABLE_KEY
+    );
+
+    const auth = document.getElementById("auth");
+    const dashboard = document.getElementById("dashboard");
+    const form = document.getElementById("authForm");
+    const message = document.getElementById("message");
+    const heading = document.getElementById("heading");
+    const submitButton = document.getElementById("submitButton");
+    const toggleMode = document.getElementById("toggleMode");
+
+    let isSignup = false;
+
+    function showMessage(text) {
+      message.textContent = text;
+    }
+
+    function showDashboard(user) {
+      auth.classList.add("hidden");
+      dashboard.classList.remove("hidden");
+      document.getElementById("userEmail").textContent =
+        user.email || "Conta autenticada";
+    }
+
+    function showLogin() {
+      dashboard.classList.add("hidden");
+      auth.classList.remove("hidden");
+    }
+
+    toggleMode.addEventListener("click", () => {
+      isSignup = !isSignup;
+      heading.textContent = isSignup
+        ? "Criar uma conta"
+        : "Entrar na sua conta";
+      submitButton.textContent = isSignup
+        ? "Cadastrar"
+        : "Entrar";
+      toggleMode.textContent = isSignup
+        ? "Já tenho uma conta"
+        : "Criar uma conta";
+      showMessage("");
+    });
+
+    form.addEventListener("submit", async (event) => {
+      event.preventDefault();
+      submitButton.disabled = true;
+      showMessage("Aguarde...");
+
+      try {
+        const email = document.getElementById("email").value.trim();
+        const password = document.getElementById("password").value;
+
+        const result = isSignup
+          ? await supabase.auth.signUp({ email, password })
+          : await supabase.auth.signInWithPassword({ email, password });
+
+        if (result.error) throw result.error;
+
+        if (isSignup && !result.data.session) {
+          showMessage(
+            "Cadastro criado! Confira seu e-mail para confirmar a conta antes de entrar."
+          );
+        } else if (result.data.user) {
+          showDashboard(result.data.user);
+          showMessage("");
+        }
+      } catch (error) {
+        showMessage("Não foi possível concluir: " + error.message);
+      } finally {
+        submitButton.disabled = false;
+      }
+    });
+
+    document.getElementById("logout").addEventListener("click", async () => {
+      const { error } = await supabase.auth.signOut();
+      if (error) {
+        showMessage("Erro ao sair: " + error.message);
+        return;
+      }
+      showLogin();
+      showMessage("Você saiu da sua conta.");
+    });
+
+    const { data } = await supabase.auth.getSession();
+    if (data.session) showDashboard(data.session.user);
+
+    supabase.auth.onAuthStateChange((event, session) => {
+      if (session) showDashboard(session.user);
+      else showLogin();
+    });
+  </script>
+</body>
+</html>
