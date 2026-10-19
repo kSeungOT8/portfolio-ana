@@ -1,202 +1,259 @@
-
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Portfolio Ana | Dashboard</title>
+  <title>Portfólio Ana | Dashboard</title>
+
   <style>
-    * { box-sizing: border-box; }
+    * {
+      box-sizing: border-box;
+    }
+
     body {
       margin: 0;
       min-height: 100vh;
       font-family: Arial, sans-serif;
       background: #101827;
       color: #f8fafc;
-      display: grid;
-      place-items: center;
-      padding: 24px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
     }
+
     .card {
       width: 100%;
-      max-width: 430px;
+      max-width: 420px;
+      padding: 32px;
       background: #1e293b;
-      padding: 30px;
+      border: 1px solid #334155;
       border-radius: 18px;
-      box-shadow: 0 20px 60px #0004;
+      box-shadow: 0 15px 40px #0004;
     }
-    h1 { margin-top: 0; font-size: 27px; }
-    p { color: #cbd5e1; line-height: 1.5; }
-    label { display: block; margin: 18px 0 7px; }
+
+    h1, h2 {
+      text-align: center;
+    }
+
+    .subtitulo {
+      text-align: center;
+      color: #cbd5e1;
+      margin-bottom: 26px;
+    }
+
+    label {
+      display: block;
+      margin: 16px 0 7px;
+    }
+
     input {
       width: 100%;
       padding: 13px;
-      border-radius: 9px;
       border: 1px solid #475569;
+      border-radius: 9px;
       background: #0f172a;
       color: white;
       font-size: 16px;
     }
+
     button {
       width: 100%;
-      padding: 13px;
       margin-top: 16px;
+      padding: 13px;
       border: 0;
       border-radius: 9px;
       background: #38bdf8;
       color: #082f49;
-      font-weight: bold;
       font-size: 16px;
+      font-weight: bold;
       cursor: pointer;
     }
-    button.secondary {
+
+    button:hover {
+      background: #7dd3fc;
+    }
+
+    .secundario {
       background: #334155;
       color: white;
     }
-    #message { overflow-wrap: anywhere; }
-    .hidden { display: none; }
-    .tag { color: #7dd3fc; font-size: 13px; }
+
+    #mensagem {
+      text-align: center;
+      margin-top: 16px;
+      color: #fbbf24;
+      overflow-wrap: anywhere;
+    }
+
+    #dashboard {
+      width: 100%;
+      max-width: 650px;
+    }
+
+    .painel {
+      margin-top: 20px;
+      padding: 20px;
+      background: #0f172a;
+      border-radius: 12px;
+    }
+
+    .oculto {
+      display: none;
+    }
   </style>
 </head>
+
 <body>
-  <main class="card">
-    <section id="auth">
-      <span class="tag">PORTFOLIO ANA</span>
-      <h1 id="heading">Entrar na sua conta</h1>
-      <p>Entre para acessar seu dashboard.</p>
+  <main class="card" id="login">
+    <h1>Bem-vinda!</h1>
+    <p class="subtitulo">Portfólio Ana | Acesse sua conta</p>
 
-      <form id="authForm">
-        <label for="email">E-mail</label>
-        <input id="email" type="email" autocomplete="email"
-          placeholder="voce@exemplo.com" required>
+    <form id="formLogin">
+      <label for="email">E-mail</label>
+      <input id="email" type="email" required autocomplete="email">
 
-        <label for="password">Senha</label>
-        <input id="password" type="password"
-          autocomplete="current-password"
-          minlength="6" placeholder="Mínimo de 6 caracteres" required>
+      <label for="senha">Senha</label>
+      <input id="senha" type="password" required
+        minlength="6" autocomplete="current-password">
 
-        <button id="submitButton" type="submit">Entrar</button>
-      </form>
+      <button type="submit">Entrar</button>
+    </form>
 
-      <button id="toggleMode" class="secondary" type="button">
-        Criar uma conta
-      </button>
-      <p id="message" role="status"></p>
-    </section>
+    <button class="secundario" id="btnCadastro" type="button">
+      Criar uma conta
+    </button>
 
-    <section id="dashboard" class="hidden">
-      <span class="tag">ÁREA RESTRITA</span>
-      <h1>Meu Dashboard</h1>
-      <p>Você entrou com sucesso!</p>
-      <p>Conta conectada: <strong id="userEmail"></strong></p>
-      <p>Este é o início do seu painel. Em seguida, vamos conectar
-        seus dados de usuários, leads e projetos.</p>
-      <button id="logout" type="button">Sair da conta</button>
-    </section>
+    <p id="mensagem" role="status" aria-live="polite"></p>
   </main>
 
-  <script type="module">
-    import { createClient } from
-      "https://esm.sh/@supabase/supabase-js@2";
+  <main class="card oculto" id="dashboard">
+    <h1>Meu Dashboard</h1>
+    <p class="subtitulo">Você entrou na sua conta!</p>
 
-    const SUPABASE_URL =
-      "https://ouabxqtwsfugebnzslzv.supabase.co";
+    <div class="painel">
+      <h2>Bem-vinda ao seu portfólio</h2>
+      <p>Este é o espaço inicial do seu painel.</p>
+      <p><strong>Conta:</strong> <span id="usuarioAtual"></span></p>
+    </div>
 
-    const SUPABASE_PUBLISHABLE_KEY =
-      "sb_publishable_3ugFfMjcp7h06mkJsCwZaA_gZ9WPR8j";
+    <button id="btnSair" type="button">Sair da conta</button>
+    <p id="mensagemPainel" role="status" aria-live="polite"></p>
+  </main>
 
-    const supabase = createClient(
-      SUPABASE_URL,
-      SUPABASE_PUBLISHABLE_KEY
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+  <script>
+    // Use a URL do seu projeto e a sua Publishable key.
+    const SUPABASE_URL = "https://ouabxqtwsfugebnzslzv.supabase.co";
+    const SUPABASE_KEY = "sb_publishable_3ugFfMjcp7h06mkJsCwZaA_gZ9WPR8j";
+
+    const { createClient } = supabase;
+    const banco = createClient(SUPABASE_URL, SUPABASE_KEY);
+
+    const telaLogin = document.getElementById("login");
+    const telaDashboard = document.getElementById("dashboard");
+    const mensagem = document.getElementById("mensagem");
+
+    function mostrarMensagem(texto) {
+      mensagem.textContent = texto;
+    }
+
+    function mostrarDashboard(usuario) {
+      telaLogin.classList.add("oculto");
+      telaDashboard.classList.remove("oculto");
+      document.getElementById("usuarioAtual").textContent =
+        usuario.email || "Usuário conectado";
+    }
+
+    function mostrarLogin() {
+      telaDashboard.classList.add("oculto");
+      telaLogin.classList.remove("oculto");
+      mostrarMensagem("");
+    }
+
+    document.getElementById("formLogin").addEventListener("submit",
+      async function(event) {
+        event.preventDefault();
+        mostrarMensagem("Verificando seus dados...");
+
+        const email = document.getElementById("email").value.trim();
+        const senha = document.getElementById("senha").value;
+
+        const { data, error } = await banco.auth.signInWithPassword({
+          email: email,
+          password: senha
+        });
+
+        if (error) {
+          mostrarMensagem("Não foi possível entrar. Confira o e-mail e a senha.");
+          return;
+        }
+
+        mostrarDashboard(data.user);
+      }
     );
 
-    const auth = document.getElementById("auth");
-    const dashboard = document.getElementById("dashboard");
-    const form = document.getElementById("authForm");
-    const message = document.getElementById("message");
-    const heading = document.getElementById("heading");
-    const submitButton = document.getElementById("submitButton");
-    const toggleMode = document.getElementById("toggleMode");
-
-    let isSignup = false;
-
-    function showMessage(text) {
-      message.textContent = text;
-    }
-
-    function showDashboard(user) {
-      auth.classList.add("hidden");
-      dashboard.classList.remove("hidden");
-      document.getElementById("userEmail").textContent =
-        user.email || "Conta autenticada";
-    }
-
-    function showLogin() {
-      dashboard.classList.add("hidden");
-      auth.classList.remove("hidden");
-    }
-
-    toggleMode.addEventListener("click", () => {
-      isSignup = !isSignup;
-      heading.textContent = isSignup
-        ? "Criar uma conta"
-        : "Entrar na sua conta";
-      submitButton.textContent = isSignup
-        ? "Cadastrar"
-        : "Entrar";
-      toggleMode.textContent = isSignup
-        ? "Já tenho uma conta"
-        : "Criar uma conta";
-      showMessage("");
-    });
-
-    form.addEventListener("submit", async (event) => {
-      event.preventDefault();
-      submitButton.disabled = true;
-      showMessage("Aguarde...");
-
-      try {
+    document.getElementById("btnCadastro").addEventListener("click",
+      async function() {
         const email = document.getElementById("email").value.trim();
-        const password = document.getElementById("password").value;
+        const senha = document.getElementById("senha").value;
 
-        const result = isSignup
-          ? await supabase.auth.signUp({ email, password })
-          : await supabase.auth.signInWithPassword({ email, password });
-
-        if (result.error) throw result.error;
-
-        if (isSignup && !result.data.session) {
-          showMessage(
-            "Cadastro criado! Confira seu e-mail para confirmar a conta antes de entrar."
-          );
-        } else if (result.data.user) {
-          showDashboard(result.data.user);
-          showMessage("");
+        if (!email || !senha || senha.length < 6) {
+          mostrarMensagem("Digite um e-mail e uma senha com pelo menos 6 caracteres.");
+          return;
         }
-      } catch (error) {
-        showMessage("Não foi possível concluir: " + error.message);
-      } finally {
-        submitButton.disabled = false;
-      }
-    });
 
-    document.getElementById("logout").addEventListener("click", async () => {
-      const { error } = await supabase.auth.signOut();
+        mostrarMensagem("Criando sua conta...");
+
+        const { data, error } = await banco.auth.signUp({
+          email: email,
+          password: senha
+        });
+
+        if (error) {
+          mostrarMensagem("Erro no cadastro: " + error.message);
+          return;
+        }
+
+        if (data.session && data.user) {
+          mostrarDashboard(data.user);
+        } else {
+          mostrarMensagem(
+            "Cadastro realizado! Se a confirmação de e-mail estiver ativa, confira sua caixa de entrada."
+          );
+        }
+      }
+    );
+
+    document.getElementById("btnSair").addEventListener("click",
+      async function() {
+        const { error } = await banco.auth.signOut();
+
+        if (error) {
+          document.getElementById("mensagemPainel").textContent =
+            "Não foi possível sair. Tente novamente.";
+          return;
+        }
+
+        mostrarLogin();
+      }
+    );
+
+    async function verificarSessao() {
+      const { data, error } = await banco.auth.getSession();
+
       if (error) {
-        showMessage("Erro ao sair: " + error.message);
+        mostrarMensagem("Não foi possível verificar sua sessão.");
         return;
       }
-      showLogin();
-      showMessage("Você saiu da sua conta.");
-    });
 
-    const { data } = await supabase.auth.getSession();
-    if (data.session) showDashboard(data.session.user);
+      if (data.session) {
+        mostrarDashboard(data.session.user);
+      }
+    }
 
-    supabase.auth.onAuthStateChange((event, session) => {
-      if (session) showDashboard(session.user);
-      else showLogin();
-    });
+    verificarSessao();
   </script>
 </body>
 </html>
