@@ -61,66 +61,87 @@
                 <p>Acompanhe e organize as informações do seu portfólio.</p>
             </section>
 
-<section class="estatisticas">
+            <section class="estatisticas">
 
-    <div class="card-estatistica">
-        <div class="card-icone">▣</div>
-        <p>PROJETOS</p>
-        <h3>00</h3>
-        <span>Projetos cadastrados</span>
-    </div>
+                <div class="card-estatistica">
+                    <div class="card-icone">▣</div>
+                    <p>PROJETOS</p>
+                    <h3 id="total-projetos">...</h3>
+                    <span>Projetos cadastrados</span>
+                </div>
 
-    <div class="card-estatistica">
-        <div class="card-icone">♙</div>
-        <p>USUÁRIOS</p>
-        <h3>00</h3>
-        <span>Usuários cadastrados</span>
-    </div>
+                <div class="card-estatistica">
+                    <div class="card-icone">♙</div>
+                    <p>USUÁRIOS</p>
+                    <h3 id="total-usuarios">...</h3>
+                    <span>Usuários cadastrados</span>
+                </div>
 
-    <div class="card-estatistica">
-        <div class="card-icone">✉</div>
-        <p>CONTATOS</p>
-        <h3>00</h3>
-        <span>Mensagens recebidas</span>
-    </div>
+                <div class="card-estatistica">
+                    <div class="card-icone">✉</div>
+                    <p>CONTATOS</p>
+                    <h3 id="total-contatos">...</h3>
+                    <span>Mensagens recebidas</span>
+                </div>
 
-    <div class="card-estatistica">
-        <div class="card-icone">●</div>
-        <p>STATUS</p>
-        <h3>ATIVO</h3>
-        <span>Portfólio em funcionamento</span>
-    </div>
+                <div class="card-estatistica">
+                    <div class="card-icone">●</div>
+                    <p>STATUS</p>
+                    <h3>ATIVO</h3>
+                    <span>Portfólio em funcionamento</span>
+                </div>
 
-</section>
+            </section>
 
         </main>
 
     </div>
 
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
-<script>
-    const SUPABASE_URL = "https://ouabxqtwsfugebnzslzv.supabase.co";
-    const SUPABASE_KEY = "sb_publishable_3ugFfMjcp7h06mkJsCwZaA_gZ9WPR8j";
+    <script>
+        const SUPABASE_URL = "https://ouabxqtwsfugebnzslzv.supabase.co";
+        const SUPABASE_KEY = "sb_publishable_3ugFfMjcp7h06mkJsCwZaA_gZ9WPR8j";
 
-    const { createClient } = supabase;
-    const banco = createClient(SUPABASE_URL, SUPABASE_KEY);
+        const { createClient } = supabase;
+        const banco = createClient(SUPABASE_URL, SUPABASE_KEY);
 
-    document.body.style.visibility = "hidden";
+        document.body.style.visibility = "hidden";
 
-    async function protegerDashboard() {
-        const { data, error } = await banco.auth.getSession();
+        async function contarRegistros(tabela, elemento) {
+            const { count, error } = await banco
+                .from(tabela)
+                .select("*", {
+                    count: "exact",
+                    head: true
+                });
 
-        if (error || !data.session) {
-            window.location.replace("index.html");
-            return;
+            if (error) {
+                console.error("Erro na tabela " + tabela, error);
+                document.getElementById(elemento).textContent = "—";
+                return;
+            }
+
+            document.getElementById(elemento).textContent = count;
         }
 
-        document.body.style.visibility = "visible";
-    }
+        async function protegerDashboard() {
+            const { data, error } = await banco.auth.getSession();
 
-    protegerDashboard();
-</script>
+            if (error || !data.session) {
+                window.location.replace("index.html");
+                return;
+            }
+
+            document.body.style.visibility = "visible";
+
+            contarRegistros("projetos", "total-projetos");
+            contarRegistros("usuarios", "total-usuarios");
+            contarRegistros("leads", "total-contatos");
+        }
+
+        protegerDashboard();
+    </script>
 
 </body>
 </html>
