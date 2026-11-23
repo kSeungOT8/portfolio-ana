@@ -1,258 +1,327 @@
+
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Portfólio Ana | Dashboard</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfólio Ana | Login</title>
 
-  <style>
-    * {
-      box-sizing: border-box;
-    }
+    <style>
+        * {
+            box-sizing: border-box;
+        }
 
-    body {
-      margin: 0;
-      min-height: 100vh;
-      font-family: Arial, sans-serif;
-      background: #101827;
-      color: #f8fafc;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 20px;
-    }
+        body {
+            margin: 0;
+            min-height: 100vh;
+            font-family: Arial, sans-serif;
+            background: #101827;
+            color: #f8fafc;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
 
-    .card {
-      width: 100%;
-      max-width: 420px;
-      padding: 32px;
-      background: #1e293b;
-      border: 1px solid #334155;
-      border-radius: 18px;
-      box-shadow: 0 15px 40px #0004;
-    }
+        .card {
+            width: 100%;
+            max-width: 420px;
+            padding: 32px;
+            background: #1e293b;
+            border: 1px solid #334155;
+            border-radius: 18px;
+            box-shadow: 0 15px 40px #0004;
+        }
 
-    h1, h2 {
-      text-align: center;
-    }
+        h1 {
+            text-align: center;
+            margin-top: 12px;
+        }
 
-    .subtitulo {
-      text-align: center;
-      color: #cbd5e1;
-      margin-bottom: 26px;
-    }
+        .subtitulo {
+            text-align: center;
+            color: #cbd5e1;
+            margin-bottom: 26px;
+        }
 
-    label {
-      display: block;
-      margin: 16px 0 7px;
-    }
+        label {
+            display: block;
+            margin: 16px 0 7px;
+        }
 
-    input {
-      width: 100%;
-      padding: 13px;
-      border: 1px solid #475569;
-      border-radius: 9px;
-      background: #0f172a;
-      color: white;
-      font-size: 16px;
-    }
+        input {
+            width: 100%;
+            padding: 13px;
+            border: 1px solid #475569;
+            border-radius: 9px;
+            background: #0f172a;
+            color: white;
+            font-size: 16px;
+        }
 
-    button {
-      width: 100%;
-      margin-top: 16px;
-      padding: 13px;
-      border: 0;
-      border-radius: 9px;
-      background: #38bdf8;
-      color: #082f49;
-      font-size: 16px;
-      font-weight: bold;
-      cursor: pointer;
-    }
+        input:focus {
+            outline: 2px solid #38bdf8;
+        }
 
-    button:hover {
-      background: #7dd3fc;
-    }
+        button {
+            width: 100%;
+            margin-top: 16px;
+            padding: 13px;
+            border: 0;
+            border-radius: 9px;
+            background: #38bdf8;
+            color: #082f49;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+        }
 
-    .secundario {
-      background: #334155;
-      color: white;
-    }
+        button:hover {
+            background: #7dd3fc;
+        }
 
-    #mensagem {
-      text-align: center;
-      margin-top: 16px;
-      color: #fbbf24;
-      overflow-wrap: anywhere;
-    }
+        button:disabled {
+            opacity: 0.6;
+            cursor: wait;
+        }
 
-    #dashboard {
-      width: 100%;
-      max-width: 650px;
-    }
+        .secundario {
+            background: #334155;
+            color: white;
+        }
 
-    .painel {
-      margin-top: 20px;
-      padding: 20px;
-      background: #0f172a;
-      border-radius: 12px;
-    }
+        #mensagem {
+            text-align: center;
+            margin-top: 16px;
+            color: #fbbf24;
+            overflow-wrap: anywhere;
+            line-height: 1.5;
+        }
 
-    .oculto {
-      display: none;
-    }
-  </style>
+        .marca {
+            text-align: center;
+            color: #38bdf8;
+            font-weight: bold;
+            letter-spacing: 3px;
+            font-size: 13px;
+        }
+    </style>
 </head>
 
 <body>
-  <main class="card" id="login">
-    <h1>Bem-vinda!</h1>
-    <p class="subtitulo">Portfólio Ana | Acesse sua conta</p>
 
-    <form id="formLogin">
-      <label for="email">E-mail</label>
-      <input id="email" type="email" required autocomplete="email">
+    <main class="card">
 
-      <label for="senha">Senha</label>
-      <input id="senha" type="password" required
-        minlength="6" autocomplete="current-password">
+        <p class="marca">ANA LIZ | PORTFÓLIO DIGITAL</p>
 
-      <button type="submit">Entrar</button>
-    </form>
+        <h1>Bem-vinda!</h1>
 
-    <button class="secundario" id="btnCadastro" type="button">
-      Criar uma conta
-    </button>
+        <p class="subtitulo">
+            Acesse sua conta para continuar
+        </p>
 
-    <p id="mensagem" role="status" aria-live="polite"></p>
-  </main>
+        <form id="formLogin">
 
-  <main class="card oculto" id="dashboard">
-    <h1>Meu Dashboard</h1>
-    <p class="subtitulo">Você entrou na sua conta!</p>
+            <label for="email">E-mail</label>
+            <input
+                id="email"
+                type="email"
+                placeholder="Digite seu e-mail"
+                autocomplete="email"
+                required
+            >
 
-    <div class="painel">
-      <h2>Bem-vinda ao seu portfólio</h2>
-      <p>Este é o espaço inicial do seu painel.</p>
-      <p><strong>Conta:</strong> <span id="usuarioAtual"></span></p>
-    </div>
+            <label for="senha">Senha</label>
+            <input
+                id="senha"
+                type="password"
+                placeholder="Digite sua senha"
+                autocomplete="current-password"
+                required
+            >
 
-    <button id="btnSair" type="button">Sair da conta</button>
-    <p id="mensagemPainel" role="status" aria-live="polite"></p>
-  </main>
+            <button id="btnEntrar" type="submit">
+                Entrar
+            </button>
 
-  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+        </form>
 
-  <script>
-    // Use a URL do seu projeto e a sua Publishable key.
-    const SUPABASE_URL = "https://ouabxqtwsfugebnzslzv.supabase.co";
-    const SUPABASE_KEY = "sb_publishable_3ugFfMjcp7h06mkJsCwZaA_gZ9WPR8j";
+        <button
+            class="secundario"
+            id="btnCadastro"
+            type="button"
+        >
+            Criar uma conta
+        </button>
 
-    const { createClient } = supabase;
-    const banco = createClient(SUPABASE_URL, SUPABASE_KEY);
+        <p id="mensagem" role="status" aria-live="polite"></p>
 
-    const telaLogin = document.getElementById("login");
-    const telaDashboard = document.getElementById("dashboard");
-    const mensagem = document.getElementById("mensagem");
+    </main>
 
-    function mostrarMensagem(texto) {
-      mensagem.textContent = texto;
-    }
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
-    function mostrarDashboard(usuario) {
-  window.location.href = "dashboard.html";
-}
-    }
+    <script>
+        // CONFIGURAÇÃO DO SUPABASE
 
-    function mostrarLogin() {
-      telaDashboard.classList.add("oculto");
-      telaLogin.classList.remove("oculto");
-      mostrarMensagem("");
-    }
+        const SUPABASE_URL =
+            "https://ouabxqtwsfugebnzslzv.supabase.co";
 
-    document.getElementById("formLogin").addEventListener("submit",
-      async function(event) {
-        event.preventDefault();
-        mostrarMensagem("Verificando seus dados...");
+        const SUPABASE_KEY =
+            "sb_publishable_3ugFfMjcp7h06mkJsCwZaA_gZ9WPR8j";
 
-        const email = document.getElementById("email").value.trim();
-        const senha = document.getElementById("senha").value;
+        const banco = window.supabase.createClient(
+            SUPABASE_URL,
+            SUPABASE_KEY
+        );
 
-        
-const { data, error } = await banco.auth.signInWithPassword({
-    email: email,
-    password: senha
-});
+        // ELEMENTOS DA PÁGINA
 
-if (error) {
-    mostrarMensagem("Não foi possível entrar. Confira o e-mail e a senha.");
-    return;
-}
+        const formulario = document.getElementById("formLogin");
+        const emailInput = document.getElementById("email");
+        const senhaInput = document.getElementById("senha");
+        const mensagem = document.getElementById("mensagem");
+        const btnEntrar = document.getElementById("btnEntrar");
+        const btnCadastro = document.getElementById("btnCadastro");
 
-// Abrir o Dashboard após o login
-window.location.href = "dashboard.html";
-
-
-    document.getElementById("btnCadastro").addEventListener("click",
-      async function() {
-        const email = document.getElementById("email").value.trim();
-        const senha = document.getElementById("senha").value;
-
-        if (!email || !senha || senha.length < 6) {
-          mostrarMensagem("Digite um e-mail e uma senha com pelo menos 6 caracteres.");
-          return;
+        function mostrarMensagem(texto) {
+            mensagem.textContent = texto;
         }
 
-        mostrarMensagem("Criando sua conta...");
+        // LOGIN
 
-        const { data, error } = await banco.auth.signUp({
-          email: email,
-          password: senha
+        formulario.addEventListener("submit", async function(event) {
+
+            event.preventDefault();
+
+            const email = emailInput.value.trim();
+            const senha = senhaInput.value;
+
+            mostrarMensagem("Verificando seus dados...");
+
+            btnEntrar.disabled = true;
+
+            try {
+
+                const { data, error } =
+                    await banco.auth.signInWithPassword({
+                        email: email,
+                        password: senha
+                    });
+
+                if (error) {
+                    mostrarMensagem("Erro no login: " + error.message);
+                    return;
+                }
+
+                if (data.session) {
+                    mostrarMensagem("Login realizado! Abrindo painel...");
+
+                    window.location.replace("dashboard.html");
+                }
+
+            } catch (erro) {
+
+                mostrarMensagem(
+                    "Não foi possível conectar ao Supabase. Verifique sua internet e tente novamente."
+                );
+
+            } finally {
+
+                btnEntrar.disabled = false;
+
+            }
+
         });
 
-        if (error) {
-          mostrarMensagem("Erro no cadastro: " + error.message);
-          return;
+        // CADASTRO
+
+        btnCadastro.addEventListener("click", async function() {
+
+            const email = emailInput.value.trim();
+            const senha = senhaInput.value;
+
+            if (!email || !senha) {
+                mostrarMensagem("Preencha o e-mail e a senha.");
+                return;
+            }
+
+            if (senha.length < 6) {
+                mostrarMensagem("A senha precisa ter pelo menos 6 caracteres.");
+                return;
+            }
+
+            btnCadastro.disabled = true;
+
+            mostrarMensagem("Criando sua conta...");
+
+            try {
+
+                const { data, error } =
+                    await banco.auth.signUp({
+                        email: email,
+                        password: senha
+                    });
+
+                if (error) {
+                    mostrarMensagem("Erro no cadastro: " + error.message);
+                    return;
+                }
+
+                if (data.session) {
+
+                    mostrarMensagem("Conta criada! Abrindo painel...");
+
+                    window.location.replace("dashboard.html");
+
+                } else {
+
+                    mostrarMensagem(
+                        "Conta criada! Confira seu e-mail para confirmar o cadastro."
+                    );
+
+                }
+
+            } catch (erro) {
+
+                mostrarMensagem("Erro de conexão. Tente novamente.");
+
+            } finally {
+
+                btnCadastro.disabled = false;
+
+            }
+
+        });
+
+        // VERIFICAR SE JÁ EXISTE UMA SESSÃO
+
+        async function verificarSessao() {
+
+            try {
+
+                const { data, error } =
+                    await banco.auth.getSession();
+
+                if (error) {
+                    mostrarMensagem("Não foi possível verificar sua sessão.");
+                    return;
+                }
+
+                if (data.session) {
+                    window.location.replace("dashboard.html");
+                }
+
+            } catch (erro) {
+
+                mostrarMensagem("Erro ao conectar com o Supabase.");
+
+            }
+
         }
 
-        if (data.session && data.user) {
-          mostrarDashboard(data.user);
-        } else {
-          mostrarMensagem(
-            "Cadastro realizado! Se a confirmação de e-mail estiver ativa, confira sua caixa de entrada."
-          );
-        }
-      }
-    );
+        verificarSessao();
 
-    document.getElementById("btnSair").addEventListener("click",
-      async function() {
-        const { error } = await banco.auth.signOut();
+    </script>
 
-        if (error) {
-          document.getElementById("mensagemPainel").textContent =
-            "Não foi possível sair. Tente novamente.";
-          return;
-        }
-
-        mostrarLogin();
-      }
-    );
-
-    async function verificarSessao() {
-      const { data, error } = await banco.auth.getSession();
-
-      if (error) {
-        mostrarMensagem("Não foi possível verificar sua sessão.");
-        return;
-      }
-
-      if (data.session) {
-        mostrarDashboard(data.session.user);
-      }
-    }
-
-    verificarSessao();
-  </script>
 </body>
 </html>
