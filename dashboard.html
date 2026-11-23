@@ -97,5 +97,30 @@
 
     </div>
 
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+<script>
+    const SUPABASE_URL = "https://ouabxqtwsfugebnzslzv.supabase.co";
+    const SUPABASE_KEY = "sb_publishable_3ugFfMjcp7h06mkJsCwZaA_gZ9WPR8j";
+
+    const { createClient } = supabase;
+    const banco = createClient(SUPABASE_URL, SUPABASE_KEY);
+
+    document.body.style.visibility = "hidden";
+
+    async function protegerDashboard() {
+        const { data, error } = await banco.auth.getSession();
+
+        if (error || !data.session) {
+            window.location.replace("index.html");
+            return;
+        }
+
+        document.body.style.visibility = "visible";
+    }
+
+    protegerDashboard();
+</script>
+
 </body>
 </html>
