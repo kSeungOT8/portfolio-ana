@@ -1,4 +1,4 @@
-
+```html
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
@@ -6,9 +6,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dashboard | Portfólio Ana</title>
     <link rel="stylesheet" href="dashboard.css">
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 </head>
 
-<body>
+<body style="visibility: hidden;">
 
     <div class="dashboard">
 
@@ -50,9 +52,13 @@
                 <div class="perfil">
                     <span>AL</span>
                     <div>
-                        <strong>Ana Liz</strong>
+                        <strong id="nome-usuario">Usuário</strong>
                         <p>Administradora</p>
                     </div>
+
+                    <button id="botao-sair" type="button">
+                        SAIR
+                    </button>
                 </div>
             </header>
 
@@ -97,18 +103,20 @@
 
     </div>
 
-    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-
     <script>
-        const SUPABASE_URL = "https://ouabxqtwsfugebnzslzv.supabase.co";
-        const SUPABASE_KEY = "sb_publishable_3ugFfMjcp7h06mkJsCwZaA_gZ9WPR8j";
+        const SUPABASE_URL =
+            "https://ouabxqtwsfugebnzslzv.supabase.co";
 
-        const { createClient } = supabase;
-        const banco = createClient(SUPABASE_URL, SUPABASE_KEY);
+        const SUPABASE_KEY =
+            "sb_publishable_3ugFfMjcp7h06mkJsCwZaA_gZ9WPR8j";
 
-        document.body.style.visibility = "hidden";
+        const banco = supabase.createClient(
+            SUPABASE_URL,
+            SUPABASE_KEY
+        );
 
         async function contarRegistros(tabela, elemento) {
+
             const { count, error } = await banco
                 .from(tabela)
                 .select("*", {
@@ -116,32 +124,75 @@
                     head: true
                 });
 
+            const campo = document.getElementById(elemento);
+
             if (error) {
                 console.error("Erro na tabela " + tabela, error);
-                document.getElementById(elemento).textContent = "—";
+                campo.textContent = "—";
                 return;
             }
 
-            document.getElementById(elemento).textContent = count;
+            campo.textContent = count ?? 0;
         }
 
         async function protegerDashboard() {
-            const { data, error } = await banco.auth.getSession();
 
-            if (error || !data.session) {
+            try {
+                const { data, error } =
+                    await banco.auth.getSession();
+
+                if (error || !data.session) {
+                    window.location.replace("index.html");
+                    return;
+                }
+
+                const usuario = data.session.user;
+
+                const nome =
+                    usuario.user_metadata?.name ||
+                    usuario.email ||
+                    "Usuário";
+
+                document.getElementById("nome-usuario")
+                    .textContent = nome;
+
+                document.body.style.visibility = "visible";
+
+                // Contagem das tabelas
+                contarRegistros("Projetos", "total-projetos");
+                contarRegistros("usuarios", "total-usuarios");
+                contarRegistros("leads", "total-contatos");
+
+            } catch (erro) {
+                console.error("Erro ao verificar sessão:", erro);
                 window.location.replace("index.html");
-                return;
             }
-
-            document.body.style.visibility = "visible";
-
-            contarRegistros("Projetos", "total-projetos");
-            contarRegistros("usuarios", "total-usuarios");
-            contarRegistros("leads", "total-contatos");
         }
+
+        document.getElementById("botao-sair")
+            .addEventListener("click", async () => {
+
+                const botao =
+                    document.getElementById("botao-sair");
+
+                botao.disabled = true;
+                botao.textContent = "SAINDO...";
+
+                const { error } = await banco.auth.signOut();
+
+                if (error) {
+                    alert("Não foi possível sair da conta.");
+                    botao.disabled = false;
+                    botao.textContent = "SAIR";
+                    return;
+                }
+
+                window.location.replace("index.html");
+            });
 
         protegerDashboard();
     </script>
 
 </body>
 </html>
+```
