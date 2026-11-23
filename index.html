@@ -4,9 +4,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ana Liz | Portfólio Digital</title>
 
-    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <title>Ana Liz | Portfólio</title>
+
+    <link rel="stylesheet" href="style.css">
 
     <style>
         * {
@@ -17,385 +18,161 @@
         }
 
         body {
-            min-height: 100vh;
             background: #080b14;
-            color: #ffffff;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            padding: 20px;
+            color: #fff;
+            min-height: 100vh;
         }
 
-        .container {
-            width: 100%;
-            max-width: 430px;
-            background: #101827;
-            border: 1px solid #25344b;
-            border-radius: 18px;
-            padding: 38px;
-            box-shadow: 0 15px 50px rgba(0,0,0,0.35);
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 25px 8%;
+            border-bottom: 1px solid #25344b;
         }
 
         .logo {
-            text-align: center;
-            margin-bottom: 30px;
-        }
-
-        .logo h1 {
-            font-size: 35px;
+            font-size: 27px;
             letter-spacing: 3px;
         }
 
-        .logo h1 span {
+        .logo span {
             color: #20baff;
         }
 
-        .logo p {
-            color: #8298b8;
-            font-size: 10px;
-            letter-spacing: 4px;
-            margin-top: 7px;
+        nav {
+            display: flex;
+            gap: 30px;
         }
 
-        .titulo {
-            font-size: 25px;
-            margin-bottom: 8px;
+        nav a {
+            color: #a8bad4;
+            text-decoration: none;
+            font-size: 14px;
+            transition: 0.3s;
+        }
+
+        nav a:hover,
+        nav a.ativo {
+            color: #20baff;
+        }
+
+        main {
+            min-height: 75vh;
+            display: flex;
+            align-items: center;
+            padding: 60px 12%;
+        }
+
+        .conteudo {
+            max-width: 700px;
+        }
+
+        .etiqueta {
+            color: #20baff;
+            letter-spacing: 4px;
+            font-size: 12px;
+            margin-bottom: 25px;
+        }
+
+        h1 {
+            font-size: clamp(38px, 7vw, 65px);
+            line-height: 1.15;
+            margin-bottom: 20px;
+        }
+
+        h1 span {
+            color: #20baff;
         }
 
         .descricao {
             color: #91a5c4;
-            font-size: 13px;
-            margin-bottom: 25px;
-            line-height: 1.5;
-        }
-
-        .campo {
-            margin-bottom: 17px;
-        }
-
-        .campo label {
-            display: block;
-            color: #a8bad4;
-            font-size: 12px;
-            margin-bottom: 8px;
-        }
-
-        .campo input {
-            width: 100%;
-            padding: 14px;
-            background: #080e1a;
-            border: 1px solid #293c57;
-            border-radius: 8px;
-            color: white;
-            outline: none;
-            font-size: 14px;
-        }
-
-        .campo input:focus {
-            border-color: #20baff;
+            font-size: 17px;
+            line-height: 1.8;
+            max-width: 580px;
+            margin-bottom: 35px;
         }
 
         .botao {
-            width: 100%;
-            padding: 14px;
-            border: none;
-            border-radius: 8px;
+            display: inline-block;
+            padding: 14px 25px;
             background: #12aef5;
             color: #06101c;
+            border-radius: 7px;
+            text-decoration: none;
             font-weight: bold;
-            font-size: 14px;
-            cursor: pointer;
-            margin-top: 8px;
+            transition: 0.3s;
         }
 
         .botao:hover {
             background: #54caff;
+            transform: translateY(-3px);
         }
 
-        .botao:disabled {
-            opacity: 0.6;
-            cursor: wait;
-        }
-
-        .alternar {
+        footer {
             text-align: center;
-            margin-top: 24px;
-            color: #91a5c4;
-            font-size: 13px;
-        }
-
-        .alternar button {
-            background: none;
-            border: none;
-            color: #20baff;
-            cursor: pointer;
-            font-weight: bold;
-            font-size: 13px;
-        }
-
-        .mensagem {
-            margin-top: 17px;
-            font-size: 13px;
-            line-height: 1.5;
-            text-align: center;
-            color: #20baff;
-        }
-
-        .mensagem.erro {
-            color: #ff8585;
-        }
-
-        .rodape {
-            text-align: center;
+            padding: 25px;
             color: #627590;
-            font-size: 10px;
-            margin-top: 30px;
-            letter-spacing: 1px;
+            font-size: 12px;
+            border-top: 1px solid #25344b;
         }
 
-        .escondido {
-            display: none;
+        @media (max-width: 600px) {
+            header {
+                flex-direction: column;
+                gap: 20px;
+            }
+
+            nav {
+                gap: 17px;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
+            main {
+                padding: 60px 8%;
+            }
         }
     </style>
 </head>
 
 <body>
 
-    <main class="container">
+    <header>
+        <div class="logo">ANA<span>.</span></div>
 
-        <div class="logo">
-            <h1>ANA<span>.</span></h1>
-            <p>PORTFÓLIO DIGITAL</p>
-        </div>
+        <nav>
+            <a href="index.html" class="ativo">Início</a>
+            <a href="quemsoueu.html">Quem sou eu</a>
+            <a href="contato.html">Contatos</a>
+        </nav>
+    </header>
 
-        <section id="area-login">
+    <main>
+        <section class="conteudo">
 
-            <h2 class="titulo">Bem-vinda de volta!</h2>
+            <p class="etiqueta">PORTFÓLIO DIGITAL</p>
 
-            <p class="descricao">
-                Entre na sua conta para acessar seu painel administrativo.
-            </p>
-
-            <form id="form-login">
-
-                <div class="campo">
-                    <label for="email-login">E-mail</label>
-                    <input type="email" id="email-login"
-                        placeholder="Digite seu e-mail" required>
-                </div>
-
-                <div class="campo">
-                    <label for="senha-login">Senha</label>
-                    <input type="password" id="senha-login"
-                        placeholder="Digite sua senha" required>
-                </div>
-
-                <button class="botao" id="botao-login" type="submit">
-                    ENTRAR
-                </button>
-
-            </form>
-
-            <div class="alternar">
-                Ainda não tem uma conta?
-                <button type="button" id="ir-cadastro">
-                    Criar conta
-                </button>
-            </div>
-
-        </section>
-
-        <section id="area-cadastro" class="escondido">
-
-            <h2 class="titulo">Criar conta</h2>
+            <h1>
+                Olá, eu sou <span>Ana Liz.</span>
+            </h1>
 
             <p class="descricao">
-                Preencha seus dados para criar seu acesso ao portfólio.
+                Seja bem-vindo(a) ao meu espaço digital.
+                Aqui você poderá conhecer um pouco sobre mim,
+                minha trajetória, meus conhecimentos e meus objetivos.
             </p>
 
-            <form id="form-cadastro">
-
-                <div class="campo">
-                    <label for="nome-cadastro">Nome completo</label>
-                    <input type="text" id="nome-cadastro"
-                        placeholder="Digite seu nome" required>
-                </div>
-
-                <div class="campo">
-                    <label for="email-cadastro">E-mail</label>
-                    <input type="email" id="email-cadastro"
-                        placeholder="Digite seu e-mail" required>
-                </div>
-
-                <div class="campo">
-                    <label for="senha-cadastro">Senha</label>
-                    <input type="password" id="senha-cadastro"
-                        placeholder="Crie uma senha"
-                        minlength="6" required>
-                </div>
-
-                <button class="botao" id="botao-cadastro" type="submit">
-                    CRIAR MINHA CONTA
-                </button>
-
-            </form>
-
-            <div class="alternar">
-                Já possui uma conta?
-                <button type="button" id="ir-login">
-                    Fazer login
-                </button>
-            </div>
+            <a href="quemsoueu.html" class="botao">
+                CONHEÇA MINHA HISTÓRIA
+            </a>
 
         </section>
-
-        <div id="mensagem" class="mensagem"></div>
-
-        <div class="rodape">
-            ANA LIZ | PORTFÓLIO DIGITAL
-        </div>
-
     </main>
 
-    <script>
-        const SUPABASE_URL =
-            "https://ouabxqtwsfugebnzslzv.supabase.co";
-
-        const SUPABASE_KEY =
-            "sb_publishable_3ugFfMjcp7h06mkJsCwZaA_gZ9WPR8j";
-
-        const banco = supabase.createClient(
-            SUPABASE_URL,
-            SUPABASE_KEY
-        );
-
-        const areaLogin = document.getElementById("area-login");
-        const areaCadastro = document.getElementById("area-cadastro");
-        const mensagem = document.getElementById("mensagem");
-
-        function mostrarMensagem(texto, erro = false) {
-            mensagem.textContent = texto;
-            mensagem.className = erro
-                ? "mensagem erro"
-                : "mensagem";
-        }
-
-        document.getElementById("ir-cadastro").addEventListener("click", () => {
-            areaLogin.classList.add("escondido");
-            areaCadastro.classList.remove("escondido");
-            mostrarMensagem("");
-        });
-
-        document.getElementById("ir-login").addEventListener("click", () => {
-            areaCadastro.classList.add("escondido");
-            areaLogin.classList.remove("escondido");
-            mostrarMensagem("");
-        });
-
-        document.getElementById("form-login").addEventListener("submit", async (event) => {
-            event.preventDefault();
-
-            const botao = document.getElementById("botao-login");
-            const email = document.getElementById("email-login").value.trim();
-            const senha = document.getElementById("senha-login").value;
-
-            botao.disabled = true;
-            botao.textContent = "ENTRANDO...";
-            mostrarMensagem("");
-
-            try {
-                const { error } = await banco.auth.signInWithPassword({
-                    email: email,
-                    password: senha
-                });
-
-                if (error) {
-                    mostrarMensagem(
-                        "Não foi possível entrar: " + error.message,
-                        true
-                    );
-                    return;
-                }
-
-                window.location.replace("dashboard.html");
-
-            } catch (erro) {
-                mostrarMensagem("Ocorreu um erro ao fazer login.", true);
-            } finally {
-                botao.disabled = false;
-                botao.textContent = "ENTRAR";
-            }
-        });
-
-        document.getElementById("form-cadastro").addEventListener("submit", async (event) => {
-            event.preventDefault();
-
-            const botao = document.getElementById("botao-cadastro");
-
-            const nome = document.getElementById("nome-cadastro").value.trim();
-            const email = document.getElementById("email-cadastro").value.trim();
-            const senha = document.getElementById("senha-cadastro").value;
-
-            if (!nome) {
-                mostrarMensagem("Digite seu nome completo.", true);
-                return;
-            }
-
-            botao.disabled = true;
-            botao.textContent = "CRIANDO CONTA...";
-            mostrarMensagem("");
-
-            try {
-                const { data, error } = await banco.auth.signUp({
-                    email: email,
-                    password: senha,
-                    options: {
-                        data: {
-                            name: nome
-                        }
-                    }
-                });
-
-                if (error) {
-                    mostrarMensagem(
-                        "Erro ao criar conta: " + error.message,
-                        true
-                    );
-                    return;
-                }
-
-                if (data.session) {
-                    window.location.replace("dashboard.html");
-                    return;
-                }
-
-                mostrarMensagem(
-                    "Conta criada! Confira seu e-mail para confirmar o cadastro. Depois, volte e faça login."
-                );
-
-                document.getElementById("form-cadastro").reset();
-
-            } catch (erro) {
-                mostrarMensagem(
-                    "Não foi possível concluir o cadastro.",
-                    true
-                );
-            } finally {
-                botao.disabled = false;
-                botao.textContent = "CRIAR MINHA CONTA";
-            }
-        });
-
-        async function verificarSessao() {
-            const { data, error } = await banco.auth.getSession();
-
-            if (!error && data.session) {
-                window.location.replace("dashboard.html");
-            }
-        }
-
-        verificarSessao();
-    </script>
+    <footer>
+        © 2026 Ana Liz | Portfólio Digital
+    </footer>
 
 </body>
 </html>
