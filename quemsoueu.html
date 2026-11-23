@@ -4,72 +4,260 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Conheça a história e a trajetória de Ana Gomes.">
-    <title>Quem Sou Eu | Ana Gomes</title>
-    <link rel="stylesheet" href="style.css">
+
+    <title>Ana Liz | Quem sou eu</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            background: #080b14;
+            color: #fff;
+            min-height: 100vh;
+        }
+
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 25px 8%;
+            border-bottom: 1px solid #25344b;
+        }
+
+        .logo {
+            font-size: 27px;
+            letter-spacing: 3px;
+        }
+
+        .logo span {
+            color: #20baff;
+        }
+
+        nav {
+            display: flex;
+            gap: 30px;
+        }
+
+        nav a {
+            color: #a8bad4;
+            text-decoration: none;
+            font-size: 14px;
+        }
+
+        nav a:hover,
+        nav a.ativo {
+            color: #20baff;
+        }
+
+        main {
+            max-width: 1100px;
+            margin: auto;
+            padding: 75px 30px;
+        }
+
+        .etiqueta {
+            color: #20baff;
+            letter-spacing: 4px;
+            font-size: 12px;
+            margin-bottom: 20px;
+        }
+
+        .apresentacao {
+            display: grid;
+            grid-template-columns: 1.2fr 0.8fr;
+            align-items: center;
+            gap: 55px;
+        }
+
+        h1 {
+            font-size: 48px;
+            margin-bottom: 20px;
+        }
+
+        h1 span {
+            color: #20baff;
+        }
+
+        .texto {
+            color: #91a5c4;
+            line-height: 1.9;
+            font-size: 16px;
+            margin-bottom: 18px;
+        }
+
+        .foto {
+            width: 100%;
+            height: 370px;
+            border: 1px solid #20baff;
+            border-radius: 18px;
+            background: #101827;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #8298b8;
+            text-align: center;
+            padding: 25px;
+        }
+
+        .secao {
+            margin-top: 75px;
+        }
+
+        .secao h2 {
+            color: #20baff;
+            font-size: 25px;
+            margin-bottom: 20px;
+        }
+
+        .cartoes {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+        }
+
+        .cartao {
+            background: #101827;
+            border: 1px solid #25344b;
+            border-radius: 12px;
+            padding: 25px;
+        }
+
+        .cartao h3 {
+            margin-bottom: 12px;
+        }
+
+        .cartao p {
+            color: #91a5c4;
+            line-height: 1.7;
+            font-size: 14px;
+        }
+
+        footer {
+            text-align: center;
+            padding: 25px;
+            border-top: 1px solid #25344b;
+            color: #627590;
+            font-size: 12px;
+        }
+
+        @media (max-width: 700px) {
+            header {
+                flex-direction: column;
+                gap: 20px;
+            }
+
+            nav {
+                gap: 17px;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
+            .apresentacao {
+                grid-template-columns: 1fr;
+            }
+
+            h1 {
+                font-size: 38px;
+            }
+
+            .foto {
+                height: 300px;
+            }
+
+            .cartoes {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
 </head>
 
 <body>
 
-    <header class="cabecalho">
-        <nav class="menu">
+    <header>
+        <div class="logo">ANA<span>.</span></div>
 
-            <a href="index.html" class="marca">
-                <span class="simbolo">AG</span>
-                <span>ANA GOMES</span>
-            </a>
-
-            <div class="links">
-                <a href="index.html">Início</a>
-                <a href="quemsoueu.html">Quem Sou Eu</a>
-                <a href="portfolio.html">Portfólio</a>
-            </div>
-
-            <a href="login.html" class="login">Login</a>
-
+        <nav>
+            <a href="index.html">Início</a>
+            <a href="quemsoueu.html" class="ativo">Quem sou eu</a>
+            <a href="contato.html">Contatos</a>
         </nav>
     </header>
 
     <main>
 
-        <section class="sobre">
-            <div class="container">
+        <section class="apresentacao">
 
-                <p class="subtitulo">MINHA HISTÓRIA</p>
+            <div>
+                <p class="etiqueta">CONHEÇA MINHA HISTÓRIA</p>
 
-                <h1>Quem sou eu?</h1>
+                <h1>Quem sou <span>eu?</span></h1>
 
-                <p>
-                    Olá! Meu nome é Ana Gomes.
-                    Sou uma estudante interessada em tecnologia,
-                    desenvolvimento e inovação.
+                <p class="texto">
+                    Olá! Meu nome é Ana Liz.
+                    Sou estudante do Ensino Médio e tenho interesse
+                    pela área de tecnologia e desenvolvimento digital.
                 </p>
 
-                <p>
-                    Estou construindo minha trajetória por meio
-                    dos estudos, de novos conhecimentos e de
-                    experiências que contribuem para meu crescimento.
+                <p class="texto">
+                    Estou construindo minha trajetória de aprendizado,
+                    buscando desenvolver novas habilidades,
+                    adquirir conhecimentos e transformar ideias em projetos.
                 </p>
-
-                <p>
-                    Este espaço foi criado para apresentar um pouco
-                    sobre mim, meus interesses, minhas habilidades
-                    e meus objetivos para o futuro.
-                </p>
-
-                <a href="index.html" class="botao">
-                    Voltar para o início
-                </a>
-
             </div>
+
+            <div class="foto">
+                <p>Sua foto de perfil será adicionada aqui.</p>
+            </div>
+
+        </section>
+
+        <section class="secao">
+
+            <h2>Minha formação</h2>
+
+            <div class="cartoes">
+                <div class="cartao">
+                    <h3>Educação</h3>
+                    <p>
+                        Estudante do Ensino Médio em Tempo Integral (EMTI),
+                        em constante aprendizado e desenvolvimento.
+                    </p>
+                </div>
+
+                <div class="cartao">
+                    <h3>Tecnologia</h3>
+                    <p>
+                        Tenho desenvolvido conhecimentos em criação
+                        de páginas web, programação e ferramentas digitais.
+                    </p>
+                </div>
+            </div>
+
+        </section>
+
+        <section class="secao">
+
+            <h2>Meus objetivos</h2>
+
+            <div class="cartao">
+                <p>
+                    Meu objetivo é continuar aprendendo, aprimorar minhas
+                    habilidades tecnológicas e construir projetos que
+                    representem minha evolução pessoal e profissional.
+                </p>
+            </div>
+
         </section>
 
     </main>
 
-    <footer class="rodape">
-        <h2>ANA GOMES<span>.</span></h2>
-        <p>Conhecimento, criatividade e evolução.</p>
-        <p>© 2026 Ana Gomes. Todos os direitos reservados.</p>
+    <footer>
+        © 2026 Ana Liz | Portfólio Digital
     </footer>
 
 </body>
