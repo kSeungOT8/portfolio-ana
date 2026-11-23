@@ -178,19 +178,20 @@
         const email = document.getElementById("email").value.trim();
         const senha = document.getElementById("senha").value;
 
-        const { data, error } = await banco.auth.signInWithPassword({
-          email: email,
-          password: senha
-        });
+        
+const { data, error } = await banco.auth.signInWithPassword({
+    email: email,
+    password: senha
+});
 
-        if (error) {
-          mostrarMensagem("Não foi possível entrar. Confira o e-mail e a senha.");
-          return;
-        }
+if (error) {
+    mostrarMensagem("Não foi possível entrar. Confira o e-mail e a senha.");
+    return;
+}
 
-        mostrarDashboard(data.user);
-      }
-    );
+// Abrir o Dashboard após o login
+window.location.href = "dashboard.html";
+
 
     document.getElementById("btnCadastro").addEventListener("click",
       async function() {
