@@ -160,10 +160,8 @@
     }
 
     function mostrarDashboard(usuario) {
-      telaLogin.classList.add("oculto");
-      telaDashboard.classList.remove("oculto");
-      document.getElementById("usuarioAtual").textContent =
-        usuario.email || "Usuário conectado";
+  window.location.href = "dashboard.html";
+}
     }
 
     function mostrarLogin() {
