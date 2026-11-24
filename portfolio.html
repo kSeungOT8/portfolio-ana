@@ -1,0 +1,237 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Conheça os projetos e trabalhos de Ana Liz.">
+    <title>Ana Liz | Portfólio</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: #080d18;
+            color: #f1f5f9;
+            min-height: 100vh;
+        }
+
+        header {
+            padding: 25px 8%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid #1e293b;
+        }
+
+        .logo {
+            color: #38bdf8;
+            font-size: 22px;
+            font-weight: bold;
+        }
+
+        nav a {
+            color: #cbd5e1;
+            text-decoration: none;
+            margin-left: 25px;
+            font-size: 14px;
+            transition: 0.3s;
+        }
+
+        nav a:hover {
+            color: #38bdf8;
+        }
+
+        .conteudo {
+            max-width: 1100px;
+            margin: auto;
+            padding: 80px 25px;
+        }
+
+        .titulo {
+            text-align: center;
+            margin-bottom: 55px;
+        }
+
+        .titulo span {
+            color: #38bdf8;
+            font-size: 13px;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+        }
+
+        .titulo h1 {
+            font-size: 42px;
+            margin: 18px 0;
+        }
+
+        .titulo p {
+            color: #94a3b8;
+            line-height: 1.7;
+        }
+
+        .projetos {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 25px;
+        }
+
+        .card {
+            background: #111827;
+            border: 1px solid #1e293b;
+            border-radius: 15px;
+            padding: 28px;
+            transition: 0.3s;
+        }
+
+        .card:hover {
+            transform: translateY(-6px);
+            border-color: #38bdf8;
+        }
+
+        .icone {
+            font-size: 32px;
+            margin-bottom: 20px;
+        }
+
+        .card h2 {
+            font-size: 21px;
+            margin-bottom: 12px;
+        }
+
+        .card p {
+            color: #94a3b8;
+            line-height: 1.7;
+            font-size: 14px;
+            margin-bottom: 20px;
+        }
+
+        .tecnologias {
+            color: #38bdf8;
+            font-size: 12px;
+            margin-bottom: 22px;
+        }
+
+        .botao {
+            display: inline-block;
+            color: #38bdf8;
+            border: 1px solid #38bdf8;
+            padding: 10px 17px;
+            border-radius: 7px;
+            text-decoration: none;
+            font-size: 13px;
+        }
+
+        .botao:hover {
+            background: #38bdf8;
+            color: #080d18;
+        }
+
+        footer {
+            text-align: center;
+            padding: 25px;
+            border-top: 1px solid #1e293b;
+            color: #64748b;
+            font-size: 13px;
+        }
+
+        @media (max-width: 600px) {
+            header {
+                flex-direction: column;
+                gap: 20px;
+            }
+
+            nav a {
+                margin: 0 7px;
+            }
+
+            .titulo h1 {
+                font-size: 32px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <div class="logo">ANA LIZ.</div>
+
+        <nav>
+            <a href="index.html">Início</a>
+            <a href="quemsoueu.html">Quem sou eu</a>
+            <a href="portfolio.html">Portfólio</a>
+            <a href="contato.html">Contatos</a>
+        </nav>
+    </header>
+
+    <main class="conteudo">
+
+        <section class="titulo">
+            <span>Meu trabalho</span>
+            <h1>Meus Projetos</h1>
+            <p>
+                Um espaço para apresentar minhas criações,
+                experiências e minha evolução na tecnologia.
+            </p>
+        </section>
+
+        <section class="projetos">
+
+            <article class="card">
+                <div class="icone">💻</div>
+                <h2>Portfólio Pessoal</h2>
+                <p>
+                    Desenvolvimento do meu próprio site para
+                    apresentar minha trajetória, habilidades
+                    e projetos.
+                </p>
+                <div class="tecnologias">
+                    HTML • CSS • JavaScript
+                </div>
+                <span class="botao">Em desenvolvimento</span>
+            </article>
+
+            <article class="card">
+                <div class="icone">🎨</div>
+                <h2>Projetos de Design</h2>
+                <p>
+                    Espaço reservado para apresentar trabalhos
+                    criativos, identidades visuais e experiências
+                    com design.
+                </p>
+                <div class="tecnologias">
+                    Design • Criatividade
+                </div>
+                <span class="botao">Em breve</span>
+            </article>
+
+            <article class="card">
+                <div class="icone">⚙️</div>
+                <h2>Projetos de Tecnologia</h2>
+                <p>
+                    Espaço reservado para apresentar atividades,
+                    experiências e projetos desenvolvidos na área
+                    de tecnologia.
+                </p>
+                <div class="tecnologias">
+                    Tecnologia • Desenvolvimento
+                </div>
+                <span class="botao">Em breve</span>
+            </article>
+
+        </section>
+
+    </main>
+
+    <footer>
+        © 2026 Ana Liz. Todos os direitos reservados.
+    </footer>
+
+</body>
+</html>
