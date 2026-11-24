@@ -1,0 +1,273 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Ana Liz | Contatos</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            background: #080b14;
+            color: #ffffff;
+            min-height: 100vh;
+        }
+
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 25px 8%;
+            border-bottom: 1px solid #25344b;
+        }
+
+        .logo {
+            font-size: 27px;
+            letter-spacing: 3px;
+        }
+
+        .logo span {
+            color: #20baff;
+        }
+
+        nav {
+            display: flex;
+            gap: 30px;
+        }
+
+        nav a {
+            color: #a8bad4;
+            text-decoration: none;
+            font-size: 14px;
+            transition: 0.3s;
+        }
+
+        nav a:hover,
+        nav a.ativo {
+            color: #20baff;
+        }
+
+        main {
+            max-width: 900px;
+            margin: auto;
+            padding: 80px 30px;
+            text-align: center;
+        }
+
+        .etiqueta {
+            color: #20baff;
+            font-size: 12px;
+            letter-spacing: 4px;
+            margin-bottom: 20px;
+        }
+
+        h1 {
+            font-size: 45px;
+            margin-bottom: 20px;
+        }
+
+        h1 span {
+            color: #20baff;
+        }
+
+        .descricao {
+            color: #91a5c4;
+            font-size: 16px;
+            line-height: 1.8;
+            max-width: 600px;
+            margin: 0 auto 45px;
+        }
+
+        .contatos {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+            text-align: left;
+        }
+
+        .cartao {
+            background: #101827;
+            border: 1px solid #25344b;
+            border-radius: 13px;
+            padding: 28px;
+            transition: 0.3s;
+        }
+
+        .cartao:hover {
+            border-color: #20baff;
+            transform: translateY(-4px);
+        }
+
+        .icone {
+            font-size: 27px;
+            margin-bottom: 18px;
+        }
+
+        .cartao h2 {
+            font-size: 18px;
+            margin-bottom: 12px;
+        }
+
+        .cartao p {
+            color: #91a5c4;
+            font-size: 14px;
+            margin-bottom: 17px;
+        }
+
+        .cartao a {
+            color: #20baff;
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: bold;
+            overflow-wrap: anywhere;
+        }
+
+        .cartao a:hover {
+            text-decoration: underline;
+        }
+
+        .mensagem {
+            margin-top: 45px;
+            padding: 28px;
+            background: #101827;
+            border: 1px solid #25344b;
+            border-radius: 13px;
+            color: #91a5c4;
+            line-height: 1.8;
+        }
+
+        footer {
+            text-align: center;
+            padding: 25px;
+            border-top: 1px solid #25344b;
+            color: #627590;
+            font-size: 12px;
+        }
+
+        @media (max-width: 650px) {
+            header {
+                flex-direction: column;
+                gap: 20px;
+            }
+
+            nav {
+                gap: 17px;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
+            h1 {
+                font-size: 36px;
+            }
+
+            .contatos {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+
+        <div class="logo">ANA<span>.</span></div>
+
+        <nav>
+            <a href="index.html">Início</a>
+            <a href="quemsoueu.html">Quem sou eu</a>
+            <a href="contato.html" class="ativo">Contatos</a>
+        </nav>
+
+    </header>
+
+    <main>
+
+        <p class="etiqueta">VAMOS NOS CONECTAR</p>
+
+        <h1>Entre em <span>contato.</span></h1>
+
+        <p class="descricao">
+            Obrigada por visitar meu portfólio!
+            Se quiser conhecer mais sobre meus projetos,
+            trocar ideias ou entrar em contato, estou disponível
+            pelos canais abaixo.
+        </p>
+
+        <section class="contatos">
+
+            <div class="cartao">
+
+                <div class="icone">✉</div>
+
+                <h2>E-mail</h2>
+
+                <p>Entre em contato por e-mail.</p>
+
+                <a href="mailto:lizgmstk@gmail.com">
+                    lizgmstk@gmail.com
+                </a>
+
+            </div>
+
+            <div class="cartao">
+
+                <div class="icone">◎</div>
+
+                <h2>Instagram</h2>
+
+                <p>Acompanhe meu perfil.</p>
+
+                <a href="https://www.instagram.com/liwzjk/"
+                   target="_blank"
+                   rel="noopener noreferrer">
+                    @liwzjk
+                </a>
+
+            </div>
+
+            <div class="cartao">
+
+                <div class="icone">⌘</div>
+
+                <h2>GitHub</h2>
+
+                <p>Meu perfil estará disponível em breve.</p>
+
+                <span style="color:#627590; font-size:14px;">
+                    Em breve
+                </span>
+
+            </div>
+
+        </section>
+
+        <div class="mensagem">
+
+            Obrigada pela visita!
+
+            <br>
+
+            Este portfólio representa minha trajetória,
+            meus aprendizados e meus objetivos.
+
+        </div>
+
+    </main>
+
+    <footer>
+        © 2026 Ana Liz | Portfólio Digital
+    </footer>
+
+</body>
+
+</html>
