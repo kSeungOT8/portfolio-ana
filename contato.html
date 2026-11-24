@@ -18,7 +18,7 @@
 
         body {
             background: #080b14;
-            color: #ffffff;
+            color: white;
             min-height: 100vh;
         }
 
@@ -58,8 +58,12 @@
         main {
             max-width: 900px;
             margin: auto;
-            padding: 80px 30px;
+            padding: 70px 30px;
+        }
+
+        .titulo {
             text-align: center;
+            margin-bottom: 45px;
         }
 
         .etiqueta {
@@ -70,8 +74,8 @@
         }
 
         h1 {
-            font-size: 45px;
-            margin-bottom: 20px;
+            font-size: 42px;
+            margin-bottom: 18px;
         }
 
         h1 span {
@@ -80,35 +84,21 @@
 
         .descricao {
             color: #91a5c4;
-            font-size: 16px;
             line-height: 1.8;
-            max-width: 600px;
-            margin: 0 auto 45px;
         }
 
         .contatos {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
             gap: 20px;
-            text-align: left;
+            margin-bottom: 45px;
         }
 
         .cartao {
             background: #101827;
             border: 1px solid #25344b;
             border-radius: 13px;
-            padding: 28px;
-            transition: 0.3s;
-        }
-
-        .cartao:hover {
-            border-color: #20baff;
-            transform: translateY(-4px);
-        }
-
-        .icone {
-            font-size: 27px;
-            margin-bottom: 18px;
+            padding: 25px;
         }
 
         .cartao h2 {
@@ -119,7 +109,7 @@
         .cartao p {
             color: #91a5c4;
             font-size: 14px;
-            margin-bottom: 17px;
+            margin-bottom: 15px;
         }
 
         .cartao a {
@@ -130,18 +120,80 @@
             overflow-wrap: anywhere;
         }
 
-        .cartao a:hover {
-            text-decoration: underline;
-        }
-
-        .mensagem {
-            margin-top: 45px;
-            padding: 28px;
+        .formulario {
             background: #101827;
             border: 1px solid #25344b;
-            border-radius: 13px;
+            border-radius: 15px;
+            padding: 35px;
+        }
+
+        .formulario h2 {
+            font-size: 25px;
+            margin-bottom: 12px;
+        }
+
+        .formulario .subtitulo {
             color: #91a5c4;
-            line-height: 1.8;
+            font-size: 14px;
+            margin-bottom: 30px;
+            line-height: 1.6;
+        }
+
+        .campo {
+            margin-bottom: 22px;
+        }
+
+        .campo label {
+            display: block;
+            color: #a8bad4;
+            font-size: 13px;
+            margin-bottom: 9px;
+        }
+
+        .campo input,
+        .campo textarea {
+            width: 100%;
+            padding: 14px;
+            background: #080e1a;
+            border: 1px solid #293c57;
+            border-radius: 8px;
+            color: white;
+            outline: none;
+            font-size: 14px;
+        }
+
+        .campo input:focus,
+        .campo textarea:focus {
+            border-color: #20baff;
+        }
+
+        .campo textarea {
+            min-height: 140px;
+            resize: vertical;
+        }
+
+        .botao {
+            width: 100%;
+            padding: 15px;
+            border: none;
+            border-radius: 8px;
+            background: #12aef5;
+            color: #06101c;
+            font-weight: bold;
+            font-size: 14px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .botao:hover {
+            background: #54caff;
+        }
+
+        .aviso {
+            color: #627590;
+            font-size: 12px;
+            margin-top: 15px;
+            line-height: 1.6;
         }
 
         footer {
@@ -165,11 +217,15 @@
             }
 
             h1 {
-                font-size: 36px;
+                font-size: 34px;
             }
 
             .contatos {
                 grid-template-columns: 1fr;
+            }
+
+            .formulario {
+                padding: 23px;
             }
         }
     </style>
@@ -189,22 +245,24 @@
 
     <main>
 
-        <p class="etiqueta">VAMOS NOS CONECTAR</p>
+        <section class="titulo">
 
-        <h1>Entre em <span>contato.</span></h1>
+            <p class="etiqueta">VAMOS NOS CONECTAR</p>
 
-        <p class="descricao">
-            Obrigada por visitar meu portfólio!
-            Se quiser conhecer mais sobre meus projetos,
-            trocar ideias ou entrar em contato, estou disponível
-            pelos canais abaixo.
-        </p>
+            <h1>Entre em <span>contato.</span></h1>
+
+            <p class="descricao">
+                Será um prazer receber sua mensagem!
+                Utilize um dos canais abaixo ou preencha
+                o formulário para falar comigo.
+            </p>
+
+        </section>
 
         <section class="contatos">
 
             <div class="cartao">
-                <div class="icone">✉</div>
-                <h2>E-mail</h2>
+                <h2>✉ E-mail</h2>
                 <p>Entre em contato por e-mail.</p>
 
                 <a href="mailto:lizgmstk@gmail.com">
@@ -213,8 +271,7 @@
             </div>
 
             <div class="cartao">
-                <div class="icone">◎</div>
-                <h2>Instagram</h2>
+                <h2>◎ Instagram</h2>
                 <p>Acompanhe meu perfil principal.</p>
 
                 <a href="https://www.instagram.com/liwzjk_/"
@@ -224,24 +281,69 @@
                 </a>
             </div>
 
-            <div class="cartao">
-                <div class="icone">⌘</div>
-                <h2>GitHub</h2>
-                <p>Meu perfil estará disponível em breve.</p>
-
-                <span style="color:#627590; font-size:14px;">
-                    Em breve
-                </span>
-            </div>
-
         </section>
 
-        <div class="mensagem">
-            Obrigada pela visita!
-            <br>
-            Este portfólio representa minha trajetória,
-            meus aprendizados e meus objetivos.
-        </div>
+        <section class="formulario">
+
+            <h2>Envie uma mensagem</h2>
+
+            <p class="subtitulo">
+                Preencha os campos abaixo para entrar em contato comigo.
+            </p>
+
+            <form action="https://formsubmit.co/lizgmstk@gmail.com"
+                  method="POST">
+
+                <input type="hidden" name="_subject"
+                       value="Nova mensagem pelo portfólio da Ana">
+
+                <input type="hidden" name="_captcha"
+                       value="true">
+
+                <div class="campo">
+                    <label for="nome">Nome completo</label>
+
+                    <input
+                        type="text"
+                        id="nome"
+                        name="Nome"
+                        placeholder="Digite seu nome"
+                        required>
+                </div>
+
+                <div class="campo">
+                    <label for="email">Seu e-mail</label>
+
+                    <input
+                        type="email"
+                        id="email"
+                        name="Email"
+                        placeholder="Digite seu e-mail"
+                        required>
+                </div>
+
+                <div class="campo">
+                    <label for="mensagem">Mensagem</label>
+
+                    <textarea
+                        id="mensagem"
+                        name="Mensagem"
+                        placeholder="Escreva sua mensagem..."
+                        required></textarea>
+                </div>
+
+                <button type="submit" class="botao">
+                    ENVIAR MENSAGEM
+                </button>
+
+                <p class="aviso">
+                    Ao enviar, seus dados serão encaminhados
+                    para o e-mail de contato informado.
+                </p>
+
+            </form>
+
+        </section>
 
     </main>
 
@@ -250,5 +352,4 @@
     </footer>
 
 </body>
-
 </html>
